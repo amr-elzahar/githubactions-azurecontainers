@@ -12,9 +12,11 @@ jobs:
   
     steps:
       - name: Azure Login
-        uses: Azure/login@v2.1.0
-        with:
-          client-id: ${{ secrets.AZURE_APP_REGISTRATION_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID}}
-          subscription-id: ${{ secrets.AZURE_SUBS_ID }}
+        run: |
+          az login --username ${{ AZURE_APP_REGISTRATION_ID }} --password ${{ AZURE_CLIENT_SECRET }} --tenant ${{ AZURE_TENANT_ID }} --service-principal 
+        # uses: Azure/login@v2.1.0
+        # with:
+        #   client-id: ${{ secrets.AZURE_APP_REGISTRATION_ID }}
+        #   tenant-id: ${{ secrets.AZURE_TENANT_ID}}
+        #   subscription-id: ${{ secrets.AZURE_SUBS_ID }}
         
