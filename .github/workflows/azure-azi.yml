@@ -16,7 +16,8 @@ jobs:
         #   az login --username ${{ secrets.AZURE_APP_REGISTRATION_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }} --service-principal 
         uses: Azure/login@v2.1.0
         with:
-          client-id: ${{ secrets.AZURE_APP_REGISTRATION_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID}}
-          subscription-id: ${{ secrets.AZURE_SUBS_ID }}
+          creds: ${{ secrets.AZURE_CREDS }}
+          # client-id: ${{ secrets.AZURE_APP_REGISTRATION_ID }}
+          # tenant-id: ${{ secrets.AZURE_TENANT_ID}}
+          # subscription-id: ${{ secrets.AZURE_SUBS_ID }}
         
