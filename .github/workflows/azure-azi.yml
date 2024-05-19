@@ -22,4 +22,4 @@ jobs:
           az acr create --name ${{ env.AZURE_ACR_NAME }}  --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --sku Basic 
       - name: Authenticate to Azure Container Registery
         run: |
-          az acr login --name ${{ env.mydemoacrgithubactions }}
+          az acr login --name ${{ env.AZURE_ACR_NAME }}
