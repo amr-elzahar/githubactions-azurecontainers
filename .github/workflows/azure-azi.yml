@@ -28,4 +28,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ env.AZURE_ACR_NAME}}.azureacr.io/${{ env.IMAGE_NAME }}
+          tags: ${{ env.AZURE_ACR_NAME}}.azurecr.io/${{ env.IMAGE_NAME }}
