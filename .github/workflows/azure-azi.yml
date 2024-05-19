@@ -28,3 +28,4 @@ jobs:
         uses: docker/setup-qemu-action@v3
         with:
           tags: ${{ env.AZURE_ACR_NAME}}.azureacr.io/${{ env.IMAGE_NAME }}
+          push: true
