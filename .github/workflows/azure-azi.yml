@@ -9,9 +9,9 @@ jobs:
   
     steps:
       - name: Azure Login
-        # run: |
-        #   az login --username ${{ secrets.AZURE_APP_REGISTRATION_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }} --service-principal 
-        uses: Azure/login@v2.1.0
-        with:
-          creds: ${{ secrets.AZURE_CREDS }}
+        run: |
+          az login --username ${{ secrets.AZURE_APP_REGISTRATION_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }} --service-principal 
+        # uses: Azure/login@v2.1.0
+        # with:
+        #   creds: ${{ secrets.AZURE_CREDS }}
         
