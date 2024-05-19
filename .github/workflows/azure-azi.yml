@@ -3,17 +3,20 @@ on:
   # push:
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
 jobs:
   azure-aci-job:
     runs-on: ubuntu-latest
   
     steps:
       - name: Azure Login
-        run: |
-          az login --username ${{ secrets.AZURE_APP_REGISTRATION_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }} --service-principal 
-        # uses: Azure/login@v2.1.0
-        # with:
-        #   client-id: ${{ secrets.AZURE_APP_REGISTRATION_ID }}
-        #   tenant-id: ${{ secrets.AZURE_TENANT_ID}}
-        #   subscription-id: ${{ secrets.AZURE_SUBS_ID }}
+        # run: |
+        #   az login --username ${{ secrets.AZURE_APP_REGISTRATION_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }} --service-principal 
+        uses: Azure/login@v2.1.0
+        with:
+          client-id: ${{ secrets.AZURE_APP_REGISTRATION_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID}}
+          subscription-id: ${{ secrets.AZURE_SUBS_ID }}
         
