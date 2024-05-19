@@ -25,7 +25,7 @@ jobs:
         run: |
           az acr login --name ${{ env.AZURE_ACR_NAME }}
       - name: Build and Push Docker Image
-        uses: docker/setup-qemu-action@v3
+        uses: docker/build-push-action@v3
         with:
-          tags: ${{ env.AZURE_ACR_NAME}}.azureacr.io/${{ env.IMAGE_NAME }}
           push: true
+          tags: ${{ env.AZURE_ACR_NAME}}.azureacr.io/${{ env.IMAGE_NAME }}
