@@ -1,0 +1,25 @@
+name: Azure Container Instances Workflow
+on:
+  # push:
+  workflow_dispatch:
+
+env:
+  AZURE_ACR_NAME: mydemoacrgithubactions
+  AZURE_RESOURCE_GROUP: acr-resource-group
+jobs:
+  azure-aci-job:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Azure Login
+        run: |
+          az login --username ${{ secrets.AZURE_APP_REGISTRATION_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }} --service-principal 
+        # uses: Azure/login@v2.1.0
+        # with:
+        #   creds: ${{ secrets.AZURE_CREDS }}
+      - name: Create Azure Container Registery
+        run: |
+          az acr create --name ${{ env.AZURE_ACR_NAME }}  --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --sku Basic 
+      - name: Authenticate to Azure Container Registery
+        run: |
+          az acr login --name ${{ env.AZURE_ACR_NAME }}
