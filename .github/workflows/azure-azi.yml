@@ -3,9 +3,6 @@ on:
   # push:
   workflow_dispatch:
 
-permissions:
-  id-token: write
-  contents: read
 jobs:
   azure-aci-job:
     runs-on: ubuntu-latest
@@ -17,7 +14,4 @@ jobs:
         uses: Azure/login@v2.1.0
         with:
           creds: ${{ secrets.AZURE_CREDS }}
-          # client-id: ${{ secrets.AZURE_APP_REGISTRATION_ID }}
-          # tenant-id: ${{ secrets.AZURE_TENANT_ID}}
-          # subscription-id: ${{ secrets.AZURE_SUBS_ID }}
         
