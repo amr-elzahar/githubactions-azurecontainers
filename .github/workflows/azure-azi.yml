@@ -7,6 +7,9 @@ env:
   AZURE_ACR_NAME: mydemoacrgithubactions
   AZURE_RESOURCE_GROUP: acr-resource-group
   IMAGE_NAME: node-farm
+  AZURE_CONTAINER_GROUP_NAME: node-farm-container-group
+  APPLICATION_PORT: 3000
+  DNS_NAME: node-farm
 jobs:
   azure-aci-job:
     runs-on: ubuntu-latest
@@ -17,7 +20,7 @@ jobs:
           az login --username ${{ secrets.AZURE_APP_REGISTRATION_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }} --service-principal
         # uses: Azure/login@v2.1.0
         # with:
-        #   creds: ${{ secrets.AZURE_CREDS }}
+        # creds: ${{ secrets.AZURE_CREDS }}
       - name: Create Azure Container Registery
         run: |
           az acr create --name ${{ env.AZURE_ACR_NAME }}  --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --sku Basic
@@ -29,3 +32,6 @@ jobs:
         with:
           push: true
           tags: ${{ env.AZURE_ACR_NAME}}.azurecr.io/${{ env.IMAGE_NAME }}
+      - name: Create Container Instance
+        run: |
+          az container create --name ${{ env.AZURE_CONTAINER_GROUP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --ports ${{env.APPLICATION_PORT}} --image ${{ env.AZURE_ACR_NAME}}.azurecr.io/${{ env.IMAGE_NAME }} --ip-adsress public --dns-name-label ${{ env.DNS_NAME }} --location centralus
