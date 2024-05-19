@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_ACR_NAME: myacr-demo-githubactions
+  AZURE_ACR_NAME: myacrDemoGithubActions
   AZURE_RESOURCE_GROUP: acr-resource-group
 jobs:
   azure-aci-job:
