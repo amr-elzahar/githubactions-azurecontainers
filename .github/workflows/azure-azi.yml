@@ -34,4 +34,4 @@ jobs:
           tags: ${{ env.AZURE_ACR_NAME}}.azurecr.io/${{ env.IMAGE_NAME }}
       - name: Create Container Instance
         run: |
-          az container create --name ${{ env.AZURE_CONTAINER_GROUP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --ports ${{env.APPLICATION_PORT}} --image ${{ env.AZURE_ACR_NAME}}.azurecr.io/${{ env.IMAGE_NAME }} --ip-adsress public --dns-name-label ${{ env.DNS_NAME }} --location centralus
+          az container create --name ${{ env.AZURE_CONTAINER_GROUP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --ports ${{env.APPLICATION_PORT}} --image ${{ env.AZURE_ACR_NAME}}.azurecr.io/${{ env.IMAGE_NAME }} --ip-address public --dns-name-label ${{ env.DNS_NAME }} --location centralus
