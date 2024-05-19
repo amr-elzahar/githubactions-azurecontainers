@@ -10,6 +10,7 @@ env:
   AZURE_CONTAINER_GROUP_NAME: node-farm-container-group
   APPLICATION_PORT: 3000
   DNS_NAME: node-farm
+  AZURE_LOCATION: eastus
 jobs:
   azure-aci-job:
     runs-on: ubuntu-latest
@@ -34,4 +35,4 @@ jobs:
           tags: ${{ env.AZURE_ACR_NAME}}.azurecr.io/${{ env.IMAGE_NAME }}
       - name: Create Container Instance
         run: |
-          az container create --name ${{ env.AZURE_CONTAINER_GROUP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --ports ${{env.APPLICATION_PORT}} --image ${{ env.AZURE_ACR_NAME}}.azurecr.io/${{ env.IMAGE_NAME }} --ip-address public --dns-name-label ${{ env.DNS_NAME }} --location centralus --registry-username ${{ secrets.AZURE_APP_REGISTRATION_ID }} --registry-password ${{ secrets.AZURE_CLIENT_SECRET }}
+          az container create --name ${{ env.AZURE_CONTAINER_GROUP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --ports ${{env.APPLICATION_PORT}} --image ${{ env.AZURE_ACR_NAME}}.azurecr.io/${{ env.IMAGE_NAME }} --ip-address public --dns-name-label ${{ env.DNS_NAME }} --location ${{ AZURE_LOCATION }} --registry-username ${{ secrets.AZURE_APP_REGISTRATION_ID }} --registry-password ${{ secrets.AZURE_CLIENT_SECRET }}
